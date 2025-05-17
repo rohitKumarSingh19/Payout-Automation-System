@@ -26,4 +26,4 @@ const sessionSchema=new mongoose.Schema({
         default:"pending"
     }
 });
-module.exports=mongoose.model("Session","sessionSchema");
+module.exports=mongoose.model("Session",sessionSchema);

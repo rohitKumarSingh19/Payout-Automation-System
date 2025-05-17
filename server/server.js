@@ -10,11 +10,11 @@ app.use(express.json());
 const sessionRoutes = require("./routes/sessionRoutes");
 
 app.use("/api/auth", require("./routes/authRoutes"));
-//app.use("/api/sessions", require("./routes/sessionRoutes"));
-// app.use("/api/receipts", require("./routes/receiptRoutes"));
-// app.use("/api/messages", require("./routes/messageRoutes"));
-// app.use("/api/audits", require("./routes/auditRoutes"));
-app.use("/api/sessions", sessionRoutes);
+app.use("/api/sessions", require("./routes/sessionRoutes"));
+//app.use("/api/receipts", require("./routes/receiptRoutes"));
+//app.use("/api/messages", require("./routes/messageRoutes"));
+//app.use("/api/audits", require("./routes/auditRoutes"));
+//app.use("/api/sessions", sessionRoutes);
 
 
 // Connect to MongoDB
