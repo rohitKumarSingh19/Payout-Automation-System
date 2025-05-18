@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
 import bannerImage from "../assets/banner.jpg"; // Add this image to your assets folder
-// import feature1 from "../assets/feature1.png";
+ import feature1 from "../assets/feature1.jpg";
 // import feature2 from "../assets/feature2.png";
 // import feature3 from "../assets/feature3.png";
 
@@ -21,7 +21,7 @@ const Home = () => {
         <h2>Why Choose Us?</h2>
         <div className="feature-grid">
           <div className="feature-card">
-            {/* <img src={feature1} alt="Automated Tracking" /> */}
+            <img src={feature1} alt="Automated Tracking" />
             <h3>Automated Tracking</h3>
             <p>Track sessions and generate payouts without the hassle.</p>
           </div>
