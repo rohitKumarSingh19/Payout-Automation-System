@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // ✅ Step 1
+import "./AuthForm.css";
 
 const Register = () => {
+  const navigate = useNavigate(); // ✅ Step 2
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    role: "mentor" // default role
   });
 
   const [message, setMessage] = useState("");
@@ -19,19 +24,25 @@ const Register = () => {
     setMessage("");
 
     try {
-       await axios.post("http://localhost:5000/api/auth/register", formData);
-      setMessage("Registration successful. Please login.");
-      setFormData({ name: "", email: "", password: "" });
+      await axios.post("http://localhost:5000/api/auth/register", formData);
+      setMessage("Registration successful. Redirecting to login...");
+      setTimeout(() => {
+        navigate("/login"); // ✅ Step 3: Redirect after delay
+      }, 1500); // Optional delay to show success message
     } catch (err) {
       setMessage(err.response?.data?.message || "Registration failed");
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Mentor Register</h2>
-      {message && <p style={styles.message}>{message}</p>}
-      <form onSubmit={handleSubmit} style={styles.form}>
+    <div className="auth-container">
+      <h2>Register</h2>
+      {message && (
+        <p className={`auth-message ${message.includes("successful") ? "success" : "error"}`}>
+          {message}
+        </p>
+      )}
+      <form onSubmit={handleSubmit} className="auth-form">
         <input
           type="text"
           name="name"
@@ -39,7 +50,6 @@ const Register = () => {
           value={formData.name}
           onChange={handleChange}
           required
-          style={styles.input}
         />
         <input
           type="email"
@@ -48,7 +58,6 @@ const Register = () => {
           value={formData.email}
           onChange={handleChange}
           required
-          style={styles.input}
         />
         <input
           type="password"
@@ -57,46 +66,15 @@ const Register = () => {
           value={formData.password}
           onChange={handleChange}
           required
-          style={styles.input}
         />
-        <button type="submit" style={styles.button}>Register</button>
+        <select name="role" value={formData.role} onChange={handleChange} required>
+          <option value="mentor">Mentor</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit" className="auth-button">Register</button>
       </form>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    maxWidth: "400px",
-    margin: "50px auto",
-    padding: "20px",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    textAlign: "center",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "15px",
-  },
-  input: {
-    padding: "10px",
-    fontSize: "16px",
-    borderRadius: "4px",
-    border: "1px solid #ccc",
-  },
-  button: {
-    padding: "10px",
-    fontSize: "16px",
-    backgroundColor: "#007bff",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-  },
-  message: {
-    color: "green",
-  }
 };
 
 export default Register;

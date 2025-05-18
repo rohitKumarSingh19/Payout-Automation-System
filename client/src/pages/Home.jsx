@@ -2,8 +2,8 @@ import React from "react";
 import "./Home.css";
 import bannerImage from "../assets/banner.jpg"; // Add this image to your assets folder
  import feature1 from "../assets/feature1.jpg";
-// import feature2 from "../assets/feature2.png";
-// import feature3 from "../assets/feature3.png";
+ import feature2 from "../assets/feature2.jpg";
+import feature3 from "../assets/feature3.jpg";
 
 const Home = () => {
   return (
@@ -26,12 +26,12 @@ const Home = () => {
             <p>Track sessions and generate payouts without the hassle.</p>
           </div>
           <div className="feature-card">
-            {/* <img src={feature2} alt="Transparent Reports" /> */}
+            <img src={feature2} alt="Transparent Reports" />
             <h3>Transparent Reports</h3>
             <p>Instant insights into earnings and session performance.</p>
           </div>
           <div className="feature-card">
-            {/* <img src={feature3} alt="Secure Payouts" /> */}
+            <img src={feature3} alt="Secure Payouts" />
             <h3>Secure Payouts</h3>
             <p>Fast and secure payout processing for mentors.</p>
           </div>
